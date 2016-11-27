@@ -19,9 +19,7 @@ public class DatabaseConnector {
         try {
         	Class.forName("org.postgresql.Driver"); 
             connection = DriverManager.getConnection(conn_string, properties);
-            System.out.println("pripojeny");
         } catch (SQLException e) {
-            System.out.println("Nepripojeny");
         } 
         
         return connection;

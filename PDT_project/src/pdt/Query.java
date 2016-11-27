@@ -69,7 +69,6 @@ public class Query{
     			jsonObject.put("properties", properties);
     			jsonArray.put(jsonObject);
             }
-            System.out.println("urobil som query");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -142,7 +141,6 @@ public class Query{
     			jsonObject2.put("properties", properties2);
     			jsonArray.put(jsonObject2);
             }
-            System.out.println("urobil som query");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -215,7 +213,6 @@ public class Query{
     			jsonObject2.put("properties", properties2);
     			jsonArray.put(jsonObject2);
             }
-            System.out.println("urobil som query");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -287,7 +284,6 @@ public class Query{
     			jsonObject2.put("properties", properties2);
     			jsonArray.put(jsonObject2);
             }
-            System.out.println("urobil som query");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -310,22 +306,6 @@ public class Query{
             statement = c.createStatement();
             ResultSet query_results = statement.executeQuery("select ST_AsGeoJSON(ST_TRANSFORM(p.way, 4326)) as way1, ST_AsGeoJSON(ST_TRANSFORM(q2.way, 4326)) as way2, q2.name as name, q2.amenity as amenity from planet_osm_point as p, (select way, name, amenity from (SELECT way as way, name, amenity FROM planet_osm_point as p where ST_Distance(ST_GeomFromText('POINT(" + x + " " + y + ")')::geography, ST_GeomFromText(ST_AsText(way))::geography) < " + d + " AND (amenity = " + a + ")) as q1) as q2 where p.amenity = 'parking' and st_distance(ST_GeomFromText(ST_AsText(p.way))::geography, ST_GeomFromText(ST_AsText(q2.way))::geography) < 200");
             while(query_results.next()){
-                //toto je pre verziu kde sa hned ukazu aj parkoviska, potom treba z indexu zmazat aj layer2 a aj getPark funkcia je nanic
-            	/*JSONObject jsonObject1 = new JSONObject();
-                jsonObject1.put("type", "Feature");
-                JSONObject geometry = new JSONObject(query_results.getString("way1"));
-                jsonObject1.put("geometry", geometry);
-                JSONObject properties = new JSONObject();
-                String name = "Parking";
-                properties.put("name", name);
-                String amenity = "parking";
-               
-                properties.put("marker-color", "#3399ff");
-    			properties.put("marker-symbol", "bus");
-    			properties.put("marker-size", "medium");
-    			properties.put("amenity", amenity);
-    			jsonObject1.put("properties", properties);
-    			jsonArray.put(jsonObject1);*/
     			
                 JSONObject jsonObject2 = new JSONObject();
                 jsonObject2.put("type", "Feature");
@@ -360,7 +340,6 @@ public class Query{
     			jsonObject2.put("properties", properties2);
     			jsonArray.put(jsonObject2);
             }
-            System.out.println("urobil som query");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -402,7 +381,6 @@ public class Query{
     			
                 
             }
-            System.out.println("urobil som query");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
