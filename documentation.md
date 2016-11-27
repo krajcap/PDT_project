@@ -3,9 +3,9 @@
 Táto aplikácia zobrazuje miesta pre večernú zábavu (bary, puby, nočné kluby, herne, kiná, divadlá). Funkcie aplikácie sú nasledovné:
 - zobraziť všetky miesta zvolených typov v zadanej vzdialenosti od zvolenej pozície
 - zobraziť miesta zvolených typov v zadanej vzdialenosti od zvolenej pozície, v ktorých blízkosti (200 m) je aspoň jedno parkovisko
--- zobraziť parkoviská v okolí 200 m od zvoleného miesta (dvojklikom na toto miesto) z takýchto miest
+	- zobraziť parkoviská v okolí 200 m od zvoleného miesta (dvojklikom na toto miesto) z takýchto miest
 - zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a bankomat, ktorý je najbližšie po ceste zo zvolenej pozície po najbližšie miesto
--- môže byť vybratý bankomat konkrétnej banky a tým brať do úvahy len takéto bankomaty
+	- môže byť vybratý bankomat konkrétnej banky a tým brať do úvahy len takéto bankomaty
 - zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a 5 najbližších bankomatov od tohto miesta
 
 Takto to vyzerá v akcii:
