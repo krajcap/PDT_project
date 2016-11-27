@@ -1,20 +1,14 @@
-*This is a documentation for a fictional project, just to show you what I expect. Notice a few key properties:*
-- *no cover page, really*
-- *no copy&pasted assignment text*
-- *no code samples*
-- *concise, to the point, gets me a quick overview of what was done and how*
-- *I don't really care about the document length*
-- *I used links where appropriate*
+# Prehľad
 
-# Overview
+Táto aplikácia zobrazuje miesta pre večernú zábavu (bary, puby, nočné kluby, herne, kiná, divadlá). Funkcie aplikácie sú nasledovné:
+- zobraziť všetky miesta zvolených typov v zadanej vzdialenosti od zvolenej pozície
+- zobraziť miesta zvolených typov v zadanej vzdialenosti od zvolenej pozície, v ktorých blízkosti (200 m) je aspoň jedno parkovisko
+-- zobraziť parkoviská v okolí 200 m od zvoleného miesta (dvojklikom na toto miesto) z takýchto miest
+- zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a bankomat, ktorý je najbližšie po ceste zo zvolenej pozície po najbližšie miesto
+-- môže byť vybratý bankomat konkrétnej banky a tým brať do úvahy len takéto bankomaty
+- zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a 5 najbližších bankomatov od tohto miesta
 
-This application shows hotels in Bratislava on a map. Most important features are:
-- search by proximity to my current location
-- search by hotel name
-- intelligent ordering - by proximity and by hotel features
-- hotels on the map are color coded by their quality assigned in stars (standard)
-
-This is it in action:
+Takto to vyzerá v akcii:
 
 ![Screenshot](screenshot.PNG)
 
