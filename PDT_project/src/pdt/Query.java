@@ -74,7 +74,6 @@ public class Query{
         } finally {
             statement.close();
         }
-        
         return jsonArray.toString();
     
     }
@@ -306,7 +305,7 @@ public class Query{
             statement = c.createStatement();
             ResultSet query_results = statement.executeQuery("select ST_AsGeoJSON(ST_TRANSFORM(p.way, 4326)) as way1, ST_AsGeoJSON(ST_TRANSFORM(q2.way, 4326)) as way2, q2.name as name, q2.amenity as amenity from planet_osm_point as p, (select way, name, amenity from (SELECT way as way, name, amenity FROM planet_osm_point as p where ST_Distance(ST_GeomFromText('POINT(" + x + " " + y + ")')::geography, ST_GeomFromText(ST_AsText(way))::geography) < " + d + " AND (amenity = " + a + ")) as q1) as q2 where p.amenity = 'parking' and st_distance(ST_GeomFromText(ST_AsText(p.way))::geography, ST_GeomFromText(ST_AsText(q2.way))::geography) < 200");
             while(query_results.next()){
-    			
+                   			
                 JSONObject jsonObject2 = new JSONObject();
                 jsonObject2.put("type", "Feature");
                 JSONObject geometry2 = new JSONObject(query_results.getString("way2"));

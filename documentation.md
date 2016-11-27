@@ -3,9 +3,9 @@
 Táto aplikácia zobrazuje miesta pre večernú zábavu (bary, puby, nočné kluby, herne, kiná, divadlá). Funkcie aplikácie sú nasledovné:
 - zobraziť všetky miesta zvolených typov v zadanej vzdialenosti od zvolenej pozície
 - zobraziť miesta zvolených typov v zadanej vzdialenosti od zvolenej pozície, v ktorých blízkosti (200 m) je aspoň jedno parkovisko
-	- zobraziť parkoviská v okolí 200 m od zvoleného miesta (dvojklikom na toto miesto) z takýchto miest
-- zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a bankomat, ktorý je najbližšie po ceste zo zvolenej pozície po najbližšie miesto
-	- môže byť vybratý bankomat konkrétnej banky a tým brať do úvahy len takéto bankomaty
+	- zobraziť parkoviská v okolí 200 m od zvoleného miesta (dvojklikom na toto miesto)
+- zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a bankomat, cez ktorý je vzdialenosť od zvolenej pozície po nájdené najbližšie miesto najkratšia
+	- môže byť vybratý bankomat konkrétnej banky a tým sa budú brať do úvahy len takéto bankomaty
 - zobraziť najbližšie miesto zvoleného typu od zvolenej pozície a 5 najbližších bankomatov od tohto miesta
 
 Takto to vyzerá v akcii:
@@ -20,14 +20,14 @@ Frontend je HTML stránka (`index.html`), ktorá používa mapbox.js pre zobraze
 
 # Backend
 
-Backend je naprogramovaný v jazyku Java a zabezpečuje pripojenie k databáze, vykonanie dopytov a vrátenie geojson výstupu pre frontend. Pre beh aplikácie sa využíva Apache Tomcat a 3 JAR súbory:
-- java-json.jar
-- javax.ws.rs-api-2.0.jar
-- postgresql-9.2-1002.jdbc4.jar
+Backend je naprogramovaný v jazyku Java a zabezpečuje pripojenie k databáze, vykonanie dopytov a vrátenie GeoJSON výstupu pre frontend. Pre beh aplikácie sa využíva Apache Tomcat a 3 JAR súbory:
+- `java-json.jar`
+- `javax.ws.rs-api-2.0.jar`
+- `postgresql-9.2-1002.jdbc4.jar`
 
 ## Data
 
-Použité dáta sú z Open Street Maps, pričom bolo stiahnuté celé Slovensko a pomocou nástroja `osm2pgsql` boli údaje importované do databázy v PostgreSQL rozšírenej o PostGIS. GeoJSON je generovaný pomocou funkcie `st_asgeojson`.
+Použité dáta sú z Open Street Maps, pričom bolo stiahnuté celé Slovensko a pomocou nástroja `osm2pgsql` boli údaje importované do databázy v PostgreSQL rozšírenej o PostGIS. GeoJSON je generovaný pomocou funkcie `ST_AsGeoJSON`.
 
 ## Api
 
@@ -43,11 +43,11 @@ Použité dáta sú z Open Street Maps, pričom bolo stiahnuté celé Slovensko 
 
 `GET /main/query/getPark/{x}/{y}`
 
-**Nájsť najbližšie miesto zvoleného typu a bankomat, ktorý je najbližšie po ceste k tomuto miestu**
+**Nájsť najbližšie miesto zvoleného typu a bankomat, cez ktorý je vzdialenosť k danému miestu najkratšia**
 
 `GET /main/query/getNearestAndATM/{x}/{y}/{a}`
 
-**Nájsť najbližšie miesto zvoleného typu a bankomat konkrétnej banky, ktorý je najbližšie po ceste k tomuto miestu**
+**Nájsť najbližšie miesto zvoleného typu a bankomat konkrétnej banky, cez ktorý je vzdialenosť k danému miestu najkratšia**
 
 `GET /main/query/getNearestAndATMType/{x}/{y}/{a}/{b}`
 
@@ -58,7 +58,7 @@ Použité dáta sú z Open Street Maps, pričom bolo stiahnuté celé Slovensko 
 
 ### Response
 
-API vracia geojson obsahujúci 2 kľúče, a to `geometry` and `properties`. `properties` zahŕňa meno, typ, symbol, farbu a veľkosť konkrétneho bodu. Príklad:
+API vracia GeoJSON obsahujúci 2 kľúče, a to `geometry` and `properties`. `properties` zahŕňa meno, typ, symbol, farbu a veľkosť konkrétneho bodu. Príklad:
 ```
 {"geometry":{"coordinates":[17.1369199,48.1540125],"type":"Point"},"type":"Feature","properties":{"marker-symbol":"marker","amenity":"theatre","name":"Elledanse","marker-color":"#cc0099","marker-size":"medium"}}
 ```
